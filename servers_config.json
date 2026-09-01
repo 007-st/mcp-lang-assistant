@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "weather": {
+      "command": "python",
+      "args": ["weather_server.py"],
+      "transport": "stdio"
+    },
+    "write": {
+      "command": "python",
+      "args": ["write_server.py"],
+      "transport": "stdio"
+    },
+    "amap-maps": {
+      "transport": "sse",
+      "url": "这里自己在魔塔中获取自己的专属链接"
+    }
+  }
+}
