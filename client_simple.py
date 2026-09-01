@@ -21,7 +21,7 @@ class Configuration:
         self.api_key: str = os.getenv("DASHSCOPE_API_KEY") or ""
         self.model: str = os.getenv("MODEL") or "qwen-plus"
         if not self.api_key:
-            raise ValueError("❌ 未找到 DASHSCOPE_API_KEY")
+            raise ValueError("未找到 DASHSCOPE_API_KEY")
 
     @staticmethod
     def load_servers(file_path: str = "servers_config.json") -> dict:
@@ -105,7 +105,7 @@ async def process_user_query_safe(query: str):
             model = ChatTongyi(model=cfg.model)
             agent = create_react_agent(model=model, tools=tools)
             
-            print(f"🚀 开始处理请求: {query}")
+            print(f"开始处理请求: {query}")
             result = await agent.ainvoke(
                 {"messages": [{"role": "user", "content": query}]}
             )
@@ -118,7 +118,7 @@ async def process_user_query_safe(query: str):
         return await process_user_query(query)
     except Exception as e:
          # 其他错误
-         print(f"❌ 发生错误: {e}")
+         print(f"发生错误: {e}")
          raise e
 
 # 主程序入口
@@ -126,4 +126,4 @@ if __name__ == "__main__":
     # 模拟一次调用
     # 这里的 process_user_query 已经被修改为不再调用 cleanup
     response = asyncio.run(process_user_query("北京今天天气如何？"))
-    print(f"\n🏁 最终结果:\n{response}")
+    print(f"\n最终结果:\n{response}")
