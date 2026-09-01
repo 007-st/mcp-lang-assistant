@@ -29,9 +29,9 @@ async def write_file(content: str) -> str:
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(content)
 
-        return f"✅ 已成功写入文件: {filepath}"
+        return f"已成功写入文件: {filepath}"
     except Exception as e:
-        return f"⚠️ 写入失败: {e}"
+        return f"写入失败: {e}"
 
 if __name__ == "__main__":
     # 以标准 I/O 方式运行 MCP 服务器
