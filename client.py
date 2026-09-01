@@ -46,7 +46,7 @@ class Configuration:
         self.api_key: str = os.getenv("DASHSCOPE_API_KEY") or ""
         self.model: str = os.getenv("MODEL") or "qwen-plus"
         if not self.api_key:
-            raise ValueError("❌ 未找到 DASHSCOPE_API_KEY，请在 .env 中配置")
+            raise ValueError("未找到 DASHSCOPE_API_KEY，请在 .env 中配置")
 
     @staticmethod
     def load_servers(file_path: str = "servers_config.json") -> Dict[str, Any]:
@@ -69,7 +69,7 @@ async def run_chat_loop() -> None:
 
     tools = await mcp_client.get_tools()        # LangChain Tool 对象列表
 
-    logging.info(f"✅ 已加载 {len(tools)} 个 MCP 工具： {[t.name for t in tools]}")
+    logging.info(f"已加载 {len(tools)} 个 MCP 工具： {[t.name for t in tools]}")
 
     # 2️ 初始化大模型（Qwen）
     model = ChatTongyi(model=cfg.model)
@@ -81,7 +81,7 @@ async def run_chat_loop() -> None:
                                checkpointer=checkpointer)
 
     # 4 CLI 聊天
-    print("\n🤖 MCP Agent 已启动，输入 'quit' 退出")
+    print("\n MCP Agent 已启动，输入 'quit' 退出")
     while True:
         user_input = input("\n你: ").strip()
         if user_input.lower() == "quit":
@@ -93,11 +93,11 @@ async def run_chat_loop() -> None:
         )
             print(f"\nAI: {result['messages'][-1].content}")
         except Exception as exc:
-            print(f"\n⚠️  出错: {exc}")
+            print(f"\n 出错: {exc}")
 
     # 5️ 清理
     await mcp_client.cleanup()
-    print("🧹 资源已清理，Bye!")
+    print(" 资源已清理，Bye!")
 
 # ────────────────────────────
 # 入口
